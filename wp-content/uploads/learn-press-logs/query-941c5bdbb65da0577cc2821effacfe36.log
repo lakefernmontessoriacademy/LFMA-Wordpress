@@ -1,0 +1,239 @@
+-----05-27-2016 @ 15:44:09 ------
+Array
+(
+    [0] => Array
+        (
+            [0] =>  SELECT c.* FROM wp_posts c INNER JOIN wp_learnpress_sections s on c.ID = s.section_course_id INNER JOIN wp_learnpress_section_items si on si.section_id = s.section_id AND si.item_id = 488 
+            [1] => 3
+        )
+
+    [1] => Array
+        (
+            [0] =>  SELECT lsi.item_id, ls.section_course_id as course_id FROM wp_learnpress_section_items lsi INNER JOIN wp_learnpress_sections ls ON ls.section_id = lsi.section_id WHERE ls.section_course_id IN (SELECT c.ID FROM wp_posts c INNER JOIN wp_learnpress_sections ls ON ls.section_course_id = c.ID INNER JOIN wp_learnpress_section_items lsi ON lsi.section_id = ls.section_id WHERE lsi.item_id = 488 ) 
+            [1] => 2
+        )
+
+    [2] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'embed_autourls' LIMIT 1
+            [1] => 1
+        )
+
+    [3] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'gravatar_disable_hovercards' LIMIT 1
+            [1] => 1
+        )
+
+    [4] => Array
+        (
+            [0] => SELECT wp_posts.* FROM wp_posts WHERE 1=1 AND (wp_posts.ID = '488') AND wp_posts.post_type = 'lp_quiz' ORDER BY wp_posts.post_date DESC 
+            [1] => 1
+        )
+
+    [5] => Array
+        (
+            [0] => SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (488) ORDER BY meta_id ASC
+            [1] => 1
+        )
+
+    [6] => Array
+        (
+            [0] =>  SELECT SQL_CALC_FOUND_ROWS u.*, c.comment_ID as comment_id, cm1.meta_value as title, c.comment_content as content, cm2.meta_value as rate FROM wp_posts p INNER JOIN wp_comments c ON p.ID = c.comment_post_ID INNER JOIN wp_users u ON u.ID = c.user_id INNER JOIN wp_commentmeta cm1 ON cm1.comment_id = c.comment_ID AND cm1.meta_key='_lpr_review_title' INNER JOIN wp_commentmeta cm2 ON cm2.comment_id = c.comment_ID AND cm2.meta_key='_lpr_rating' WHERE p.ID=488 AND c.comment_type='review' ORDER BY c.comment_date DESC LIMIT 0, 5 
+            [1] => 1
+        )
+
+    [7] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'jetpack_relatedposts' LIMIT 1
+            [1] => 1
+        )
+
+    [8] => Array
+        (
+            [0] =>  SELECT * FROM wp_learnpress_user_quizzes uq INNER JOIN wp_learnpress_user_quizmeta uqm ON uqm.learnpress_user_quiz_id = uq.user_quiz_id WHERE uq.quiz_id = 488 AND uq.user_id = 1464363849 ORDER BY uq.user_quiz_id DESC 
+            [1] => 1
+        )
+
+    [9] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'wordfenceActivated' LIMIT 1
+            [1] => 1
+        )
+
+    [10] => Array
+        (
+            [0] =>  SELECT ID, post_name, post_parent, post_type FROM wp_posts WHERE post_name IN ('testing') AND post_type IN ('lp_quiz','attachment') 
+            [1] => 1
+        )
+
+    [11] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'verification_services_codes' LIMIT 1
+            [1] => 1
+        )
+
+    [12] => Array
+        (
+            [0] => SELECT * FROM wp_posts WHERE ID = 486 LIMIT 1
+            [1] => 1
+        )
+
+    [13] => Array
+        (
+            [0] => SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (486) ORDER BY meta_id ASC
+            [1] => 1
+        )
+
+    [14] => Array
+        (
+            [0] => SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE t.term_id = 18
+            [1] => 1
+        )
+
+    [15] => Array
+        (
+            [0] => SELECT tr.object_id FROM wp_term_relationships AS tr INNER JOIN wp_term_taxonomy AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id WHERE tt.taxonomy IN ('nav_menu') AND tt.term_id IN ('18') ORDER BY tr.object_id ASC
+            [1] => 1
+        )
+
+    [16] => Array
+        (
+            [0] => SELECT * FROM wp_posts WHERE (post_type = 'page' AND post_status = 'publish') AND ID NOT IN (79,4,444,51,310,312,311,314,313,462,331,422,328,367,327,366,330,421,329,420,303,5,445,2,365,270) ORDER BY wp_posts.post_title ASC
+            [1] => 1
+        )
+
+    [17] => Array
+        (
+            [0] => SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy IN ('category') ORDER BY t.name ASC 
+            [1] => 1
+        )
+
+    [18] => Array
+        (
+            [0] => SELECT * FROM wp_posts WHERE ID = 488 LIMIT 1
+            [1] => 1
+        )
+
+    [19] => Array
+        (
+            [0] => SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (484) ORDER BY meta_id ASC
+            [1] => 1
+        )
+
+    [20] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'jetpack_sso_remove_login_form' LIMIT 1
+            [1] => 1
+        )
+
+    [21] => Array
+        (
+            [0] => SELECT option_name AS name, option_value AS value FROM wp_options WHERE option_name IN ( 'bp-deactivated-components', 'bb-config-location', 'bp-xprofile-base-group-name', 'bp-xprofile-fullname-field-name', 'bp-blogs-first-install', 'bp-disable-profile-sync', 'hide-loggedout-adminbar', 'bp-disable-avatar-uploads', 'bp-disable-cover-image-uploads', 'bp-disable-group-avatar-uploads', 'bp-disable-group-cover-image-uploads', 'bp-disable-account-deletion', 'bp-disable-blogforum-comments', '_bp_theme_package_id', 'bp_restrict_group_creation', '_bp_enable_akismet', '_bp_enable_heartbeat_refresh', '_bp_force_buddybar', '_bp_retain_bp_default', 'widget_bp_core_login_widget', 'widget_bp_core_members_widget', 'widget_bp_core_whos_online_widget', 'widget_bp_core_recently_active_widget', 'widget_bp_groups_widget', 'widget_bp_messages_sitewide_notices_widget', 'registration', 'avatar_default' )
+            [1] => 1
+        )
+
+    [22] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'jetpack_sync_non_public_post_stati' LIMIT 1
+            [1] => 1
+        )
+
+    [23] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'akismet_comment_nonce' LIMIT 1
+            [1] => 1
+        )
+
+    [24] => Array
+        (
+            [0] => SELECT * FROM wp_posts WHERE ID = 5 LIMIT 1
+            [1] => 1
+        )
+
+    [25] => Array
+        (
+            [0] => SELECT * FROM wp_posts WHERE ID = 4 LIMIT 1
+            [1] => 1
+        )
+
+    [26] => Array
+        (
+            [0] => SELECT * FROM wp_posts WHERE ID = 22 LIMIT 1
+            [1] => 1
+        )
+
+    [27] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'active_sitewide_plugins' LIMIT 1
+            [1] => 1
+        )
+
+    [28] => Array
+        (
+            [0] => SELECT ID, post_name, post_parent, post_title FROM wp_posts WHERE ID IN (5,4,2,51,22) AND post_status = 'publish' 
+            [1] => 1
+        )
+
+    [29] => Array
+        (
+            [0] => SELECT * FROM wp_posts WHERE ID = 330 LIMIT 1
+            [1] => 1
+        )
+
+    [30] => Array
+        (
+            [0] => SELECT wp_posts.* FROM wp_posts WHERE 1=1 AND wp_posts.post_type = 'ppwpslack' AND ((wp_posts.post_status = 'publish')) ORDER BY wp_posts.post_date DESC 
+            [1] => 1
+        )
+
+    [31] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'jetpack_portfolio' LIMIT 1
+            [1] => 1
+        )
+
+    [32] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'sharedaddy_disable_resources' LIMIT 1
+            [1] => 1
+        )
+
+    [33] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'jetpack_testimonial' LIMIT 1
+            [1] => 1
+        )
+
+    [34] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = '_transient_timeout_learn_press_install' LIMIT 1
+            [1] => 1
+        )
+
+    [35] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = '_transient_learn_press_install' LIMIT 1
+            [1] => 1
+        )
+
+    [36] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'learn_press_permalink_structure' LIMIT 1
+            [1] => 1
+        )
+
+    [37] => Array
+        (
+            [0] => SELECT * FROM wp_posts WHERE ID = 329 LIMIT 1
+            [1] => 1
+        )
+
+    [38] => Array
+        (
+            [0] => SELECT term_id, meta_key, meta_value FROM wp_termmeta WHERE term_id IN (22,21,23,20,1) ORDER BY meta_id ASC
+            [1] => 1
+        )
+
+)
+

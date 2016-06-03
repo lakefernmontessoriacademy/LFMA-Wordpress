@@ -1,0 +1,209 @@
+-----05-26-2016 @ 14:34:20 ------
+Array
+(
+    [0] => Array
+        (
+            [0] => SELECT * FROM wp_users WHERE user_login = 'di445'
+            [1] => 1
+        )
+
+    [1] => Array
+        (
+            [0] => SELECT wp_posts.* FROM wp_posts WHERE 1=1 AND wp_posts.ID IN (288,75) AND wp_posts.post_type = 'page' AND ((wp_posts.post_status = 'publish')) ORDER BY wp_posts.post_date DESC 
+            [1] => 1
+        )
+
+    [2] => Array
+        (
+            [0] =>  SELECT comment_approved, COUNT( * ) AS total FROM wp_comments GROUP BY comment_approved 
+            [1] => 1
+        )
+
+    [3] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = '_site_transient_timeout_et_update_themes' LIMIT 1
+            [1] => 1
+        )
+
+    [4] => Array
+        (
+            [0] => SELECT wp_comments.comment_ID FROM wp_comments WHERE ( comment_approved = '1' ) AND comment_post_ID = 305 ORDER BY wp_comments.comment_date_gmt DESC 
+            [1] => 1
+        )
+
+    [5] => Array
+        (
+            [0] => SELECT comment_id, meta_key, meta_value FROM wp_commentmeta WHERE comment_id IN (8) ORDER BY meta_id ASC
+            [1] => 1
+        )
+
+    [6] => Array
+        (
+            [0] => SELECT wp_comments.* FROM wp_comments WHERE comment_ID IN (8)
+            [1] => 1
+        )
+
+    [7] => Array
+        (
+            [0] => SELECT wp_comments.comment_ID FROM wp_comments WHERE ( comment_approved = '1' ) AND comment_post_ID = 419 ORDER BY wp_comments.comment_date_gmt DESC 
+            [1] => 1
+        )
+
+    [8] => Array
+        (
+            [0] => SELECT wp_comments.comment_ID FROM wp_comments WHERE ( comment_approved = '1' ) AND comment_post_ID = 423 ORDER BY wp_comments.comment_date_gmt DESC 
+            [1] => 1
+        )
+
+    [9] => Array
+        (
+            [0] => SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (305,419,423) ORDER BY meta_id ASC
+            [1] => 1
+        )
+
+    [10] => Array
+        (
+            [0] => SELECT t.*, tt.*, tr.object_id FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON tt.term_id = t.term_id INNER JOIN wp_term_relationships AS tr ON tr.term_taxonomy_id = tt.term_taxonomy_id WHERE tt.taxonomy IN ('category', 'post_tag', 'post_format') AND tr.object_id IN (305, 419, 423) ORDER BY t.name ASC
+            [1] => 1
+        )
+
+    [11] => Array
+        (
+            [0] => SELECT wp_posts.* FROM wp_posts WHERE ID IN (423,419,305)
+            [1] => 1
+        )
+
+    [12] => Array
+        (
+            [0] => SELECT FOUND_ROWS()
+            [1] => 1
+        )
+
+    [13] => Array
+        (
+            [0] => SELECT SQL_CALC_FOUND_ROWS wp_posts.ID FROM wp_posts WHERE 1=1 AND wp_posts.post_type = 'post' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'private') ORDER BY wp_posts.post_date DESC LIMIT 0, 3
+            [1] => 1
+        )
+
+    [14] => Array
+        (
+            [0] => SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (8) ORDER BY meta_id ASC
+            [1] => 1
+        )
+
+    [15] => Array
+        (
+            [0] => SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (288,75) ORDER BY meta_id ASC
+            [1] => 1
+        )
+
+    [16] => Array
+        (
+            [0] => SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (272,295,77,46) ORDER BY meta_id ASC
+            [1] => 1
+        )
+
+    [17] => Array
+        (
+            [0] => SELECT user_id, meta_key, meta_value FROM wp_usermeta WHERE user_id IN (1) ORDER BY umeta_id ASC
+            [1] => 1
+        )
+
+    [18] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = '_transient_timeout_vp_flush_rewrite_rules' LIMIT 1
+            [1] => 1
+        )
+
+    [19] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'akismet_comment_nonce' LIMIT 1
+            [1] => 1
+        )
+
+    [20] => Array
+        (
+            [0] => SELECT * FROM wp_posts WHERE ID = 330 LIMIT 1
+            [1] => 1
+        )
+
+    [21] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = '_transient_timeout_learn_press_install' LIMIT 1
+            [1] => 1
+        )
+
+    [22] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = '_transient_learn_press_install' LIMIT 1
+            [1] => 1
+        )
+
+    [23] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'learn_press_permalink_structure' LIMIT 1
+            [1] => 1
+        )
+
+    [24] => Array
+        (
+            [0] => SELECT * FROM wp_posts WHERE ID = 329 LIMIT 1
+            [1] => 1
+        )
+
+    [25] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = '_transient_vp_flush_rewrite_rules' LIMIT 1
+            [1] => 1
+        )
+
+    [26] => Array
+        (
+            [0] => SELECT wp_posts.* FROM wp_posts WHERE 1=1 AND wp_posts.ID IN (46,77,272,295) AND wp_posts.post_type = 'nav_menu_item' AND ((wp_posts.post_status = 'publish')) ORDER BY wp_posts.menu_order ASC 
+            [1] => 1
+        )
+
+    [27] => Array
+        (
+            [0] => SELECT wp_posts.* FROM wp_posts WHERE 1=1 AND wp_posts.ID = 369 AND wp_posts.post_type = 'page' ORDER BY wp_posts.post_date DESC 
+            [1] => 1
+        )
+
+    [28] => Array
+        (
+            [0] => SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (369) ORDER BY meta_id ASC
+            [1] => 1
+        )
+
+    [29] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'wordfenceActivated' LIMIT 1
+            [1] => 1
+        )
+
+    [30] => Array
+        (
+            [0] => SELECT * FROM wp_posts WHERE (post_type = 'page' AND post_status = 'publish') AND post_parent = 369 ORDER BY wp_posts.post_title ASC LIMIT 0,1
+            [1] => 1
+        )
+
+    [31] => Array
+        (
+            [0] => SELECT t.*, tt.* FROM wp_terms AS t INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id WHERE t.term_id = 18
+            [1] => 1
+        )
+
+    [32] => Array
+        (
+            [0] => SELECT tr.object_id FROM wp_term_relationships AS tr INNER JOIN wp_term_taxonomy AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id WHERE tt.taxonomy IN ('nav_menu') AND tt.term_id IN ('18') ORDER BY tr.object_id ASC
+            [1] => 1
+        )
+
+    [33] => Array
+        (
+            [0] => SELECT option_value FROM wp_options WHERE option_name = 'et_pb_role_settings' LIMIT 1
+            [1] => 1
+        )
+
+)
+
