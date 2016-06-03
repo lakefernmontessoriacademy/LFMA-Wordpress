@@ -1,7 +1,0 @@
-#
-# dont allow access to audit.log file
-#
-<Files audit.log>
-  Order allow,deny
-  Deny from all
-</Files>
