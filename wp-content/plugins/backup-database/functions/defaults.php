@@ -20,11 +20,11 @@
 	/* default options */
 	function backup_db_default_options(){
 		
-		
-		
+		$array = array();
+		return apply_filters('backup_db_default_options', $array);
 		
 
 			
-		return  $array;
+		
 	}
 ?>

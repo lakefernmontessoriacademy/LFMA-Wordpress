@@ -12,6 +12,17 @@ Backup Database for WordPress is the best backup choice for WordPress based webs
 == Description ==
 We offer the easiest way to <strong>backup</strong> your WordPress based website or blog. You can backup your database just on click.
 
+<h4>Features</h4>
+<ul>
+<li><b>One click backup</b> - Create database backup on sigle button click</li>
+<li><b>Unlimited backup</b> - create as many backups as you want, there is no limit</li>
+<li><b>Download backup</b> - download your backup files for migration</li>
+<li><b>Manage backup</b> - delete backups, view backup or Download  log</li>
+<li><b>Backup customization</b> - you choose which tabale you want to backup</li>
+<li><b>Display DBInfo</b> - In dbinfo section you can see your db configuration</li>
+<li><b>Display Tableinfo</b> - It show the table information & number of records in the table</li>
+</ul>
+
 
 == Installation ==
 
@@ -28,6 +39,11 @@ wpproplugin@gmail.com
 
 == Screenshots ==
 
+== Support ==
+Feedback Or Any suggestion drop mail to
+wpproking@gmail.com
+
+
 
 == Changelog ==
 
@@ -39,4 +55,8 @@ wpproplugin@gmail.com
 *Added Table info
 
 1.2
-*Fiexed Bug
+*Bug Fixed
+
+2.0
+*Feaure:User can manage the backup from the dashboard
+

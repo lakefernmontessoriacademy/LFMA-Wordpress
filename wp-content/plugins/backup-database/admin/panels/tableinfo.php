@@ -13,6 +13,7 @@
 	}
 }
 
+
 ?>
 <h3><?php _e('Tables Information', 'backup_db'); ?></h3>
 	<br style="clear" />

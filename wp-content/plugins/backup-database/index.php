@@ -2,13 +2,13 @@
 /*
 Plugin Name:Backup Database
 Plugin URI:http://www.wpproking.com
-Description:A Very Light Weight WordPress Database Backup Plugin
-Version: 1.2
+Description:One Click WordPress Database Backup Plugin
+Version:2.0
 Author:WPProKing 
 */
 define('backup_db_path',plugin_dir_path(__FILE__ ));
 define('backup_db_url',plugin_dir_url(__FILE__ ));
-
+define( 'backup_downloader', backup_db_url . 'downloader.php' );
 
 
 if ( !class_exists( "backup_db" ) ) {

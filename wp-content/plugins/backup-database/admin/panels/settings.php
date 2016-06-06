@@ -1,3 +1,4 @@
+<h3><?php _e('Create Database Backup', 'backup_db'); ?></h3>
 <form class="dbtable" method="post" action="">
 <table >
  <div id="content">

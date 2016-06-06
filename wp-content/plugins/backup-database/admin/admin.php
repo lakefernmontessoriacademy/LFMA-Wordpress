@@ -21,31 +21,68 @@ class backup_db_admin {
 	}
 	
 
+ public function get_file_size($file, $type, $ID){
+       switch($type){
+          case "KB":
+            $filesize = filesize($file) * .0009765625; // bytes to KB
+          	break;
+          case "MB":
+            $filesize = (filesize($file) * .0009765625) * .0009765625; // bytes to MB
+          	break;
+          case "GB":
+            $filesize = ((filesize($file) * .0009765625) * .0009765625) * .0009765625; // bytes to GB
+          	break;
+       }
+       if($filesize <= 0){
+	
+       	update_post_meta( $ID, 'backup_status', 'Failed');
+        return $filesize = 'Unknown';
+       }else{
+
+        update_post_meta( $ID, 'backup_status', 'Completed');
+        return round($filesize, 2).' '.$type;
+        }
+    }
 
 function backup_db(){
-
-	
-   global $backup_db,$wpdb;
-	$all_tables = $wpdb->get_col('SHOW TABLES');
-	$othertable=$_POST['other_tables'];
-	$wp_backup_default_tables = array_intersect($all_tables, $backup_db->core_table_names);
-
-	 $siteName=preg_replace('/[^A-Za-z0-9\_]/', '_', get_bloginfo('name'));
-        $WPDBFileName=$siteName.'_'.Date("Y_m_d").'_'.Time("H:M:S").rand(9, 9999).'_database';       
+ global $backup_db,$wpdb;
+	 $return='';
+	$other_tables='';	
+        $WPDBFileName=date('M-d-Y-Gis').'-bak';       
         $SQLfilename=$WPDBFileName.'.sql';
 	$filename=$WPDBFileName.'.zip';	
-	$path_info = wp_upload_dir();
+     $path_info = wp_upload_dir();
+	$page['post_type']    = 'backup-database';
+		$page['post_content'] = 'backup-database - ' .  date('M-d-Y-Gis').'-bak';
+		$page['post_parent']  = 0;
+		$page['post_author']  = get_current_user_id();
+		$page['post_status']  = 'private';
+		$page['post_title']   = 'backup-database - ' . date('M-d-Y-Gis').'-bak';
+		$pageid = wp_insert_post ($page);
+		if ($pageid != 0) {
+			add_post_meta( $pageid, 'backup_status', 'In Progress');
+			add_post_meta( $pageid, 'backup_size', '---');
+			add_post_meta( $pageid, 'backup_location', $path_info['basedir'].'/backup-database/'.$filename);
+			add_post_meta( $pageid, 'backup_type', 'Database');
+		}
+	 	    
+	
+
+
+  
+	$all_tables = $wpdb->get_col('SHOW TABLES');
+	
+	$wp_backup_default_tables = array_intersect($all_tables, $backup_db->core_table_names);
 	wp_mkdir_p($path_info['basedir'].'/backup-database');
          if(isset($_POST['other_tables']))
+	{
+	$othertable=$_POST['other_tables'];
 	$tables =array_merge($wp_backup_default_tables,$othertable);
+	}
 	else
 	$tables=$wp_backup_default_tables;
 
-//	error_log(print_r($tables,true));
-	//get all of the tables
-	//$tables = $wpdb->get_col('SHOW TABLES');
-	
-	//cycle through
+
 
 		
 	foreach($tables as $table)
@@ -65,7 +102,7 @@ function backup_db(){
 				for($j=0; $j < $num_fields; $j++) 
 				{
 					$row[$j] = addslashes($row[$j]);
-					
+					//$row[$j] = ereg_replace("\n","\\n",$row[$j]);
 					if (isset($row[$j])) { $return.= '"'.$row[$j].'"' ; } else { $return.= '""'; }
 					if ($j < ($num_fields-1)) { $return.= ','; }
 				}
@@ -87,20 +124,20 @@ function backup_db(){
 		'size' => 0
 	);
 		
-	 if ( class_exists( 'ZipArchive' ) )
-		{
-			
-			$zip = new ZipArchive;
-			$zip->open($path_info['basedir'].'/backup-database/'.$WPDBFileName.".zip", ZipArchive::CREATE);
-                        $zip->addFile($path_info['basedir'].'/backup-database/'.$SQLfilename,$SQLfilename);                        
-			$zip->close();
-                    //    @unlink($path_info['basedir']."/backup-database/".$SQLfilename.".sql");
-		
-		}
-		
+	
+			 require_once( backup_db_path. 'lib/class-pclzip.php' );	
+           	 $arcname = $path_info['basedir'].'/backup-database/'.$filename;
+		  $archive = new PclZip($arcname);
+		  $v_dir = $path_info['basedir'].'/backup-database/'.$SQLfilename;
+
+     
+		 $v_list = $archive->add($v_dir, PCLZIP_OPT_REMOVE_PATH, $path_info['basedir'].'/backup-database/');
+			@unlink($v_dir);
+		$backup_size = $this->get_file_size( $path_info['basedir'].'/backup-database/'.$filename, 'MB',$pageid );
+		update_post_meta( $pageid, 'backup_size', $backup_size);
                 
   
-		echo '<div class="updated fade"><p><strong>'.sprintf(__('Download Database Backup file <a href="%s">here</a>.','userpro'),$path_info['baseurl'] .'/backup-database/'.$SQLfilename).'</strong></p></div>';
+		echo '<div class="updated fade"><p><strong>'.sprintf(__('Download Database Backup file <a href="%s">here</a>.','userpro'),$path_info['baseurl'] .'/backup-database/'.$filename).'</strong></p></div>';
 
 	do_action("backupdb_cloud_store");
 	
@@ -111,6 +148,7 @@ function backup_db(){
 		
 		$this->tabs = array(
 			'settings' => __('Create Backup','backup_db'),
+			'manage' => __('Manage Backup','backup_db'),
 			'dbinfo' => __('DB Info','backup_db'),
 			'tableinfo' => __('Table Info','backup_db'),				
 			'help' => __('Help','backup_db'),
@@ -134,6 +172,8 @@ function backup_db(){
 	
 		wp_register_style('backup_db_admin', backup_db_url.'admin/css/admin.css');
 		wp_enqueue_style('backup_db_admin');
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('backup_db_script', backup_db_url.'admin/scripts/script.js');
 		
 		
 		
