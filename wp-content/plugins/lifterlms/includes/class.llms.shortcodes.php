@@ -44,6 +44,27 @@ class LLMS_Shortcodes {
 	}
 
 	/**
+	 * Retrieve the course ID from within a course, lesson, or quiz
+	 * @return   int
+	 * @since    2.7.9
+	 * @version  2.7.9
+	 */
+	private static function get_course_id() {
+		if ( is_course() ) {
+			return get_the_ID();
+		} elseif ( is_lesson() ) {
+			$lesson = new LLMS_Lesson( get_the_ID() );
+			return $lesson->get_parent_course();
+		} elseif ( is_quiz() ) {
+			$quiz = new LLMS_Quiz( get_the_ID() );
+			$lesson = new LLMS_Lesson( $quiz->assoc_lesson );
+			return $lesson->get_parent_course();
+		} else {
+			return 0;
+		}
+	}
+
+	/**
 	* Creates a wrapper for shortcode.
 	*
 	* @return void
@@ -104,17 +125,16 @@ class LLMS_Shortcodes {
 
 	/**
 	* Memberships Shortcode
-	*
-	* Used for courses [lifterlms_memberships]
-	*
+	* Used for shortcode [lifterlms_memberships]
 	* @param array $atts   associative array of shortcode attributes
+	* @return string
 	*
 	* @since  1.4.4
-	* @return string
+	* @version  2.7.5
 	*/
 	public static function memberships( $atts ) {
 
-	    if ( isset( $atts['category'] ) ) {
+		if ( isset( $atts['category'] ) ) {
 			$tax = array(
 				array(
 					'taxonomy' => 'membership_cat',
@@ -122,21 +142,29 @@ class LLMS_Shortcodes {
 					'terms' => $atts['category'],
 				),
 			);
-	    }
+		}
 
-	    $query = new WP_Query( array(
-	    	'paged' => get_query_var( 'paged' ),
-	        'post_type' => 'llms_membership',
-	        'post_status' => 'publish',
-	        'posts_per_page' => isset( $atts['posts_per_page'] ) ? $atts['posts_per_page'] : -1,
-	        'order' => isset( $atts['order'] ) ? $atts['order'] : 'ASC',
-	        'orderby' => isset( $atts['orderby'] ) ? $atts['orderby'] : 'title',
-	        'tax_query' => isset( $tax ) ? $tax : '',
-	    ) );
+		$args = array(
+			'paged' => get_query_var( 'paged' ),
+			'post_type' => 'llms_membership',
+			'post_status' => 'publish',
+			'posts_per_page' => isset( $atts['posts_per_page'] ) ? $atts['posts_per_page'] : -1,
+			'order' => isset( $atts['order'] ) ? $atts['order'] : 'ASC',
+			'orderby' => isset( $atts['orderby'] ) ? $atts['orderby'] : 'title',
+			'tax_query' => isset( $tax ) ? $tax : '',
+		);
 
-	    ob_start();
+		if ( isset( $atts['id'] ) ) {
 
-	    if ( $query->have_posts() ) {
+			$args['p'] = $atts['id'];
+
+		}
+
+		$query = new WP_Query( $args );
+
+		ob_start();
+
+		if ( $query->have_posts() ) {
 
 			do_action( 'lifterlms_before_memberships_loop' );
 
@@ -165,15 +193,15 @@ class LLMS_Shortcodes {
 
 			do_action( 'lifterlms_after_memberships_loop' );
 
-	    } else {
+		} else {
 
 			llms_get_template( 'loop/no-courses-found.php' );
 
-	    }
+		}
 
-	    wp_reset_postdata();
+		wp_reset_postdata();
 
-	   	return ob_get_clean();
+		return ob_get_clean();
 
 	}
 
@@ -228,16 +256,8 @@ class LLMS_Shortcodes {
 	 */
 	public static function course_progress( $atts ) {
 
-		if ( is_course() ) {
-			$course_id = get_the_ID();
-		} elseif ( is_lesson() ) {
-			$lesson = new LLMS_Lesson( get_the_ID() );
-			$course_id = $lesson->get_parent_course();
-		} elseif ( is_quiz() ) {
-			$quiz = LLMS()->session->get( 'llms_quiz' );
-			$lesson = new LLMS_Lesson( $quiz->assoc_lesson );
-			$course_id = $lesson->get_parent_course();
-		} else {
+		$course_id = self::get_course_id();
+		if ( ! $course_id ) {
 			return '';
 		}
 
@@ -249,15 +269,14 @@ class LLMS_Shortcodes {
 	}
 
 	/**
-	 * Course Progress Bar Shortcode
-	 * @param  [type] $atts [description]
-	 * @return [type]       [description]
+	 * Retrieve the Course Title
+	 * @param  array  $atts  accepts no arguments
+	 * @return string
+	 * @version  2.7.9
 	 */
 	public static function course_title( $atts ) {
-		if ( is_lesson() ) {
-			$lesson = new LLMS_Lesson( get_the_ID() );
-			$course_id = $lesson->get_parent_course();
-		} else {
+		$course_id = self::get_course_id();
+		if ( ! $course_id ) {
 			return '';
 		}
 		return get_the_title( $course_id );
@@ -269,12 +288,14 @@ class LLMS_Shortcodes {
 	* Used for courses [courses]
 	*
 	* @return array
+	* @since  1.0.0
+	* @version  2.7.5
 	*/
 	public static function courses( $atts ) {
 
-	    ob_start();
+		ob_start();
 
-	    if (isset( $atts['category'] )) {
+		if (isset( $atts['category'] )) {
 			$tax = array(
 				array(
 					'taxonomy' => 'course_cat',
@@ -282,19 +303,27 @@ class LLMS_Shortcodes {
 					'terms' => $atts['category'],
 				),
 			);
-	    }
+		}
 
-	    $query = new WP_Query( array(
-	    	'paged' => get_query_var( 'paged' ),
-	        'post_type' => 'course',
-	        'post_status' => 'publish',
-	        'posts_per_page' => isset( $atts['posts_per_page'] ) ? $atts['posts_per_page'] : -1,
-	        'order' => isset( $atts['order'] ) ? $atts['order'] : 'ASC',
-	        'orderby' => isset( $atts['orderby'] ) ? $atts['orderby'] : 'title',
-	        'tax_query' => isset( $tax ) ? $tax : '',
-	    ) );
+		$args = array(
+			'paged' => get_query_var( 'paged' ),
+			'post_type' => 'course',
+			'post_status' => 'publish',
+			'posts_per_page' => isset( $atts['posts_per_page'] ) ? $atts['posts_per_page'] : -1,
+			'order' => isset( $atts['order'] ) ? $atts['order'] : 'ASC',
+			'orderby' => isset( $atts['orderby'] ) ? $atts['orderby'] : 'title',
+			'tax_query' => isset( $tax ) ? $tax : '',
+		);
 
-	    if ( $query->have_posts() ) {
+		if ( isset( $atts['id'] ) ) {
+
+			$args['p'] = $atts['id'];
+
+		}
+
+		$query = new WP_Query( $args );
+
+		if ( $query->have_posts() ) {
 
 			lifterlms_course_loop_start();
 
@@ -319,11 +348,11 @@ class LLMS_Shortcodes {
 			) );
 			echo '</nav>';
 
-	    	$courses = ob_get_clean();
-	    	wp_reset_postdata();
-	   		return $courses;
+			$courses = ob_get_clean();
+			wp_reset_postdata();
+			return $courses;
 
-	    }
+		}
 
 	}
 
@@ -336,9 +365,9 @@ class LLMS_Shortcodes {
 	*/
 	public static function related_courses( $atts ) {
 
-	    ob_start();
+		ob_start();
 
-	    if (isset( $atts['category'] )) {
+		if (isset( $atts['category'] )) {
 			$tax = array(
 						array(
 							'taxonomy' => 'course_cat',
@@ -346,18 +375,18 @@ class LLMS_Shortcodes {
 							'terms' => $atts['category'],
 						),
 					);
-	    }
+		}
 
-	    $query = new WP_Query( array(
-	        'post_type' => 'course',
-	        'post_status' => 'publish',
-	        'posts_per_page' => isset( $atts['per_page'] ) ? $atts['per_page'] : -1,
-	        'order' => isset( $atts['order'] ) ? $atts['order'] : 'ASC',
-	        'orderby' => isset( $atts['orderby'] ) ? $atts['orderby'] : 'title',
-	        'tax_query' => isset( $tax ) ? $tax : '',
-	    ) );
+		$query = new WP_Query( array(
+			'post_type' => 'course',
+			'post_status' => 'publish',
+			'posts_per_page' => isset( $atts['per_page'] ) ? $atts['per_page'] : -1,
+			'order' => isset( $atts['order'] ) ? $atts['order'] : 'ASC',
+			'orderby' => isset( $atts['orderby'] ) ? $atts['orderby'] : 'title',
+			'tax_query' => isset( $tax ) ? $tax : '',
+		) );
 
-	    if ( $query->have_posts() ) {
+		if ( $query->have_posts() ) {
 
 			lifterlms_course_loop_start();
 
@@ -369,10 +398,10 @@ class LLMS_Shortcodes {
 
 			lifterlms_course_loop_end();
 
-	    	$courses = ob_get_clean();
-	    	wp_reset_postdata();
-	   		return $courses;
-	    }
+			$courses = ob_get_clean();
+			wp_reset_postdata();
+			return $courses;
+		}
 
 	}
 

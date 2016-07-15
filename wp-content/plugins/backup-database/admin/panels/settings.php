@@ -1,3 +1,7 @@
+<p><center><a href="http://www.wpproking.com/pricing/"><img src="<?php echo backup_db_url .'admin/img/30.png' ?>">	</a></center></p><a  target="_blank" href="http://www.wpproking.com/pricing/">
+    <button >Buy Now</button></a>
+ <a  target="_blank" href="http://www.wpproking.com/features/">
+    <button >Pro Feature</button></a>	
 <h3><?php _e('Create Database Backup', 'backup_db'); ?></h3>
 <form class="dbtable" method="post" action="">
 <table >
@@ -53,6 +57,13 @@
 
 
 	<input type="submit" class="dbbutton" name="submit" id="submit"  value="<?php _e('Create Backup','backup_db'); ?>"  />
+	
+</a>
+
+
+
+
+
 	
 
 

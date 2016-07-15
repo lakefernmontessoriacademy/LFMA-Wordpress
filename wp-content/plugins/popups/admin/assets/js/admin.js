@@ -272,7 +272,7 @@ SPU_ADMIN = (function ( $ ) {
 			
 			
 			// update h4
-			$group2.find('h4').text( spu_js.l10n.or );
+			$group2.find('h4').html( spu_js.l10n.or ).addClass('rules-or');
 			
 			
 			// remove all tr's except the first one
@@ -298,4 +298,30 @@ SPU_ADMIN = (function ( $ ) {
 
 		}
 	}
-}(jQuery));	
+}(jQuery));
+( function( global, $ ) {
+	var editor,
+		syncCSS = function() {
+			$( '#spu-custom-css' ).val( editor.getSession().getValue() );
+		},
+		loadAce = function() {
+			if(! $('#custom_css').length )
+				return;
+			editor = ace.edit( 'custom_css' );
+			global.safecss_editor = editor;
+			editor.getSession().setUseWrapMode( true );
+			editor.setShowPrintMargin( false );
+			editor.getSession().setValue( $( '#spu-custom-css' ).val() );
+			editor.getSession().setMode( "ace/mode/css" );
+			jQuery.fn.spin&&$( '#custom_css_container' ).spin( false );
+			$( '#post' ).submit( syncCSS );
+		};
+	if ( $.browser.msie&&parseInt( $.browser.version, 10 ) <= 7 ) {
+		$( '#custom_css_container' ).hide();
+		$( '#spu-custom-css' ).show();
+		return false;
+	} else {
+		$( global ).load( loadAce );
+	}
+	global.aceSyncCSS = syncCSS;
+} )( this, jQuery );

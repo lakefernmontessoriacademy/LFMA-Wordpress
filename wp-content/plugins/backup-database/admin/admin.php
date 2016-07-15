@@ -150,7 +150,8 @@ function backup_db(){
 			'settings' => __('Create Backup','backup_db'),
 			'manage' => __('Manage Backup','backup_db'),
 			'dbinfo' => __('DB Info','backup_db'),
-			'tableinfo' => __('Table Info','backup_db'),				
+			'tableinfo' => __('Table Info','backup_db'),	
+			'pro' => __('ProFeature','backup_db'),				
 			'help' => __('Help','backup_db'),
 			
 			

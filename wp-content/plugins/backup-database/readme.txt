@@ -1,7 +1,7 @@
 === Backup Database ===
 Plugin Name: Backup Database
 Contributors: WPProking
-Tags: backup, back up, backup database, database, backup files, backup mysql, backup plugin, backup posts, db backup, dump, ftp backup, web backup,, 
+Tags: backup, back up, backup database, database, backup files, backup mysql, backup plugin, backup posts, db backup, dump, ftp backup, web backup,complete backup, 
 Requires at least: 3.8
 Tested up to: 4.5.2
 License: GPLv2 or later
@@ -23,6 +23,31 @@ We offer the easiest way to <strong>backup</strong> your WordPress based website
 <li><b>Display Tableinfo</b> - It show the table information & number of records in the table</li>
 </ul>
 
+= Get Proversion 'BackupWp' Plugin =
+* http://www.wpproking.com/pricing/
+* http://www.wpproking.com/features/
+
+<p>BackupWp Is Complete Backup solution for your website</p>
+<h2><strong>Pro Features</strong></h2>
+<ul>
+<li>
+One click backup - Create database backup / Complete Backup on sigle button click</li>
+<li>Automatic Backups -Supports both manual and automated (scheduled) backups: daily, weekly, or monthly. </li>
+<li>Unlimited backup - Create as many backups as you want, there is no limit</li>
+<li>Download backup - download your backup files for migration</li> 
+<li>Manage backup - delete backups, view backup or Download log</li>
+<li>FTP Backup - Complete backup of all files and database on your FTP Server</li>
+<li>DropBox Backup -Option for Store your Backup on DropBox.</li>
+<li>Limit Backup- User Can set Number of backup want to store on server.After the limit older backup auto delete.</li>
+<li>Email Notification:For Auto backup ones backup is completed admin will get email notification </li>
+<li>Support ZipArchive </li>
+<li>PclZip For Database Backup </li>
+<li>Prompt support via ticket</li>
+<li>Rapid development</li>
+
+</ul>
+
+
 
 == Installation ==
 
@@ -38,6 +63,8 @@ wpproplugin@gmail.com
 
 
 == Screenshots ==
+
+* http://www.wpproking.com/features/
 
 == Support ==
 Feedback Or Any suggestion drop mail to
@@ -59,4 +86,7 @@ wpproking@gmail.com
 
 2.0
 *Feaure:User can manage the backup from the dashboard
+
+3.0
+*Feaure:Added pro version support
 

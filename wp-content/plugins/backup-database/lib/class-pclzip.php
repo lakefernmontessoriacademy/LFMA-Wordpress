@@ -2052,7 +2052,71 @@
       $v_result_list[sizeof($v_result_list)] = $v_descr;
 
       // ----- Look for folder
-     
+      if ($v_descr['type'] == 'folder') {
+        // ----- List of items in folder
+        $v_dirlist_descr = array();
+        $v_dirlist_nb = 0;
+        if ($v_folder_handler = @opendir($v_descr['filename'])) {
+          while (($v_item_handler = @readdir($v_folder_handler)) !== false) {
+
+            // ----- Skip '.' and '..'
+              $wp_all_backup_exclude_dir=get_option('wp_all_backup_exclude_dir');
+						if(empty($wp_all_backup_exclude_dir))
+						{
+							 $excludes = WPALLBK_BACKUPS_DIR;
+						}else{
+							 $excludes = WPALLBK_BACKUPS_DIR.'|'.$wp_all_backup_exclude_dir;
+						}	
+                                                
+                                                 // Excludes                                             
+                                                  if ( preg_match( '(' . $excludes . ')',$v_item_handler) ){
+                                                       continue;
+                                                      }			   
+            if (($v_item_handler == '.') || ($v_item_handler == '..') || ($v_item_handler == WPALLBK_BACKUPS_DIR)) { 
+                continue;
+            }
+
+            // ----- Compose the full filename
+            $v_dirlist_descr[$v_dirlist_nb]['filename'] = $v_descr['filename'].'/'.$v_item_handler;
+
+            // ----- Look for different stored filename
+            // Because the name of the folder was changed, the name of the
+            // files/sub-folders also change
+            if (($v_descr['stored_filename'] != $v_descr['filename'])
+                 && (!isset($p_options[PCLZIP_OPT_REMOVE_ALL_PATH]))) {
+              if ($v_descr['stored_filename'] != '') {
+                $v_dirlist_descr[$v_dirlist_nb]['new_full_name'] = $v_descr['stored_filename'].'/'.$v_item_handler;
+              }
+              else {
+                $v_dirlist_descr[$v_dirlist_nb]['new_full_name'] = $v_item_handler;
+              }
+            }
+
+            $v_dirlist_nb++;
+          }
+
+          @closedir($v_folder_handler);
+        }
+        else {
+          // TBC : unable to open folder in read mode
+        }
+
+        // ----- Expand each element of the list
+        if ($v_dirlist_nb != 0) {
+          // ----- Expand
+          if (($v_result = $this->privFileDescrExpand($v_dirlist_descr, $p_options)) != 1) {
+            return $v_result;
+          }
+
+          // ----- Concat the resulting list
+          $v_result_list = array_merge($v_result_list, $v_dirlist_descr);
+        }
+        else {
+        }
+
+        // ----- Free local array
+        unset($v_dirlist_descr);
+      }
     }
 
     // ----- Get the result list

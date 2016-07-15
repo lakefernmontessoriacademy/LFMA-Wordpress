@@ -3,7 +3,7 @@
 Plugin Name:Backup Database
 Plugin URI:http://www.wpproking.com
 Description:One Click WordPress Database Backup Plugin
-Version:2.0
+Version:3.0
 Author:WPProKing 
 */
 define('backup_db_path',plugin_dir_path(__FILE__ ));
