@@ -215,13 +215,13 @@ class responsiveBlock extends maxBlock
 
 					<div class="option-design"> 
 						<p class="note"><?php _e("Responsive settings let you decide the behavior of the button on different devices and screen sizes. For instance large buttons on small screens.","maxbuttons") ?></p>	
-						<div class="label"><?php _e("Auto Responsive", 'maxbuttons') ?> <?php _e("(Experimental)","maxbuttons") ?></div>
+						<label for='auto_responsive'><?php _e("Auto Responsive", 'maxbuttons') ?> <?php _e("(Experimental)","maxbuttons") ?></label>
 
 						<div class="input checkbox"> 
-							<input type='checkbox' name='auto_responsive' value='1' <?php checked(1, $auto_responsive); ?> >
+							<input type='checkbox' id='auto_responsive' name='auto_responsive' value='1' <?php checked(1, $auto_responsive); ?> >
 						</div>
 
-											<div class="clear"></div>
+						<div class="clear"></div>
 						<p class="note"><strong><?php _e("Note:","maxbuttons"); ?> </strong><?php _e(" Auto responsive settings will take a guess only on small screens. To control your responsive settings uncheck this button. This will show more options.","maxbuttons"); ?></p>	
 					</div>
  
@@ -291,13 +291,14 @@ class responsiveBlock extends maxBlock
 					<div class="new_query_space"></div>
 					<div class="clear"></div>					
 					<div class="option-design new-query">
-						<div class="label"><?php _e('New Query', 'maxbuttons') ?></div>
+						<label for='new_query'><?php _e('New Query', 'maxbuttons') ?></label>
 						
- 
 						<div class="input">
 							<select name="new_query" id="new_query">
-							<?php foreach ($media_names as $key => $val):
-								$disabled = isset($media_query[$key]) ? ' DISABLED ' : ''; 
+							<?php 
+
+							foreach ($media_names as $key => $val):
+								$disabled = isset($media_query[$key]) && $key !== 'custom'    ? ' DISABLED ' : ''; 
 							?>
 							<option value="<?php echo $key ?>" <?php echo $disabled ?> ><?php echo $val ?></option>
 							 

@@ -60,7 +60,7 @@ foreach ($collections as $index => $data)
 ?>	
 	 
 	<div class='collection collection-<?php echo $id ?>' data-id="<?php echo $id ?>" data-blocknonce="<?php echo $block_nonce ?>" data-type="<?php echo $collection_type ?>">	
-		<div class="collection_remove tb-close-icon"></div>
+		<div class="collection_remove dashicons dashicons-no"></div>
  
 		<h3 class='title'><a href="?page=maxbuttons-collections&action=edit&collection=social&collection_id=<?php echo $id ?>"><?php echo $name; ?></a> 
 		

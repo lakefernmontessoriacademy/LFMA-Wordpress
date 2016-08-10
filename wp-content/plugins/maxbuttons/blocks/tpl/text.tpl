@@ -1,4 +1,4 @@
-		{if:label} 	<label>%%label%%</label> {/if:label} 
+		{if:label} 	<label for='%%id%%'>%%label%%</label> {/if:label} 
 		<div class="input text %%name%%">{if:before_input} %%before_input%% {/if:before_input}
 			<input type="text"
 				id="%%id%%"

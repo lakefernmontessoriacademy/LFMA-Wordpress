@@ -1,9 +1,6 @@
 <?php
 defined('ABSPATH') or die('No direct access permitted');
 
-/*if(is_admin()) {
-    wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', '', '4.0.1', false);
-} */
 
 if(isset($_POST['alter_charset'])) {
     
@@ -95,7 +92,7 @@ $admin->get_header(array("tabs_active" => true, "title" => $page_title) );
              
        <form method="post" action="options.php">
        
-            <div class="option-container">
+            <div class="option-container settings">
             
 
                 
@@ -103,7 +100,7 @@ $admin->get_header(array("tabs_active" => true, "title" => $page_title) );
                     <div class="option-design">
 
                             <?php settings_fields( 'maxbuttons_settings' ); ?>
-                            <div class="label"><?php _e('MaxButtons User Level', 'maxbuttons') ?></div>
+                            <label><?php _e('MaxButtons User Level', 'maxbuttons') ?></label>
                             <div class="input">
                                 <select name="maxbuttons_user_level">
                                     <?php $maxbuttons_user_level = get_option('maxbuttons_user_level'); ?>
@@ -127,33 +124,30 @@ $admin->get_header(array("tabs_active" => true, "title" => $page_title) );
                      	//$noshow = $max["noshow_tinymce"]; 
                      ?>               
                      <div class="option-design">
-                        <div class="label"><?php _e("Don't show add button in editor", 'maxbuttons'); ?></div>         
-                       	<div class="input"><input type="checkbox" name="maxbuttons_noshowtinymce" value="1" <?php checked($noshow,1); ?> /></div>
-                                      <div class="clear"></div>
+                        <label for='maxbuttons_noshowtinymce'><?php _e("Don't show add button in post editor", 'maxbuttons'); ?></label>         
+                       	<div class="input checkbox"><input type="checkbox" id='maxbuttons_noshowtinymce' name="maxbuttons_noshowtinymce" value="1" <?php checked($noshow,1); ?> /></div>
                      </div>
                      
                      <?php 
                      	$minify = get_option("maxbuttons_minify", 1); 
-                     	$description_show = get_option('maxbuttons_description_show',0); 
+                     	$description_hide = get_option('maxbuttons_hidedescription',0); 
                      	
                      ?>
                      <div class="option-design"> 
-                     	<div class="label"><?php _e("Minify CSS output of buttons","maxbuttons"); ?></div>
-                     	<div class="input"><input type="checkbox" name="maxbuttons_minify" value="1" <?php checked($minify,1); ?>>
+                     	<label for="maxbuttons_minify"><?php _e("Minify CSS output of buttons","maxbuttons"); ?></label>
+                     	<div class="input checkbox">
+                     		<input type="checkbox" id='maxbuttons_minify' name="maxbuttons_minify" value="1" <?php checked($minify,1); ?>>
+                           <span class='note'><?php _e("You will have to clear your cache after changing this setting","maxbuttons"); ?></span>
+                     	</div>                            	
+                     </div>
                      
-                     	<br>
-                           <?php _e("You will have to clear your cache after changing this setting","maxbuttons"); ?>
+                    <div class="option-design">
+                     	<label for='maxbuttons_hidedescription'><?php _e("Hide description field","maxbuttons"); ?></label>
+                     	<div class='input checkbox'><input type='checkbox' id='maxbuttons_hidedescription' name='maxbuttons_hidedescription' value='1' <?php checked($description_hide, 1); ?> > 
                      	</div>
-                                 <div class="clear"></div>
-                            	
+ 
                      </div>
-                 <?php /*    <div class="option-design">
-                     	<div class="label"><?php _e("Show deprecated description field","maxbuttons"); ?></div>
-                     	<div class='input'><input type='checkbox' name='maxbuttons_description_show' value='1' <?php checked($description_show, 1); ?> ><br>
-                     	</div>
-   	                  <div class="clear"></div>
-                     </div>
-                    */ ?>
+            
                      
              		<?php do_action("maxbuttons_settings_end"); ?>
                       <?php submit_button(); ?>
@@ -192,9 +186,7 @@ $admin->get_header(array("tabs_active" => true, "title" => $page_title) );
       
         </div>
   		</form>
-  		
- 
-  		
+ 		
             <div class="option-container">
                 <div class="title"><?php _e('UTF8 Table Fix', 'maxbuttons') ?></div>
                 <div class="inside">

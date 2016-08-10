@@ -156,7 +156,7 @@ class containerBlock extends maxBlock
 				$container_width->inputclass = 'small';
 				$container_width->output('start','end'); 
 				
-			 		// Padding
+			 		// Margin - trouble
 			 		$ptop = new maxField('number'); 
 			 		$ptop->label = __('Margin', 'maxbuttons'); 
 			 		$ptop->id = 'container_margin_top';
@@ -167,7 +167,18 @@ class containerBlock extends maxBlock
 			 		$ptop->value = maxUtils::strip_px(maxBlocks::getValue('container_margin_top')); 
 			 		
 			 		$ptop->output('start'); 
+
 			 		
+			 		$pright = new maxField('number'); 
+			 		$pright->id = 'container_margin_right';
+			 		$pright->name = $pright->id; 
+ 					$pright->min = 0;
+			 		$pright->inputclass = 'tiny'; 
+			 		$pright->before_input = '<img src="' . $icon_url . 'p_right.png" class="icon padding" title="' . __("Margin Right","maxbuttons") . '" >'; 
+			 		$pright->value = maxUtils::strip_px(maxBlocks::getValue('container_margin_right')); 
+			 		
+			 		$pright->output();
+			 					 		
 			 		$pbottom = new maxField('number'); 
 			 		$pbottom->id = 'container_margin_bottom';
 			 		$pbottom->name = $pbottom->id; 
@@ -186,17 +197,8 @@ class containerBlock extends maxBlock
 			 		$pleft->before_input = '<img src="' . $icon_url . 'p_left.png" class="icon padding" title="' . __("Margin Left","maxbuttons") . '" >'; 
 			 		$pleft->value = maxUtils::strip_px(maxBlocks::getValue('container_margin_left')); 
 			 		
-			 		$pleft->output();	 
-			 		
-			 		$pright = new maxField('number'); 
-			 		$pright->id = 'container_margin_right';
-			 		$pright->name = $pright->id; 
- 					$pright->min = 0;
-			 		$pright->inputclass = 'tiny'; 
-			 		$pright->before_input = '<img src="' . $icon_url . 'p_right.png" class="icon padding" title="' . __("Margin Right","maxbuttons") . '" >'; 
-			 		$pright->value = maxUtils::strip_px(maxBlocks::getValue('container_margin_right')); 
-			 		
-			 		$pright->output('','end');	
+			 		$pleft->output('','end');	 
+	
 				
 					$align = new maxField('generic');
 	 				$align->label = __('Alignment','maxbuttons'); 

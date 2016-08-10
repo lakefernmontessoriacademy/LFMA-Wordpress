@@ -110,6 +110,9 @@ class maxSN
 				$network_data["share_url"] = "whatsapp://send?text={url} {title}"; 
 				$network_data["count_api"] = ''; 
 			break;
+			default: 
+				$network_data['popup'] = false; // no network no popup. 
+			break;
 
 	 	}
 	

@@ -2,8 +2,8 @@
 Contributors: maxfoundry, basszje, arcware, johnbhartley
 Tags: wordpress button plugin, wordpress button, wordpress buttons, wordpress buttons plugin, wp button creator, button generator, css3 button plugin, css3 button generator, css wordpress button, css3 wordpress button, create button icon, button shortcode, social share, social icon, button, buttons, sharing, sharing buttons, widget, sidebar, Visual Composer, siteorigin, Contact Form 7, contact form, page builder, wordpress button generator, css3 button plugin, css3 button generator, css wordpress button, css3 wordpress button, simple social buttons, wp button plugin, button generator, create button icon, font awesome, fontawesome, responsive, responsive buttons, google, google event tracking, google analytics, facebook, facebook icon, facebook like, floating social media, icon, icons,like, linkedin, linkedin icon, social media, css button generator, social icons, social media icons, social media plugin, social profiles, tweet, twitter, tweet button, gradient
 Requires at least: 3.8
-Tested up to: 4.5.3
-Stable tag: 5.7
+Tested up to: 4.6
+Stable tag: 5.8
 
 
 WordPress button plugin so powerful and easy to use anyone to create beautiful buttons and social share icons. 
@@ -208,6 +208,15 @@ Enable the container option and set the alignment property to either "display: i
 
 
 == Changelog ==
+
+= 5.8 = 
+
+* Fixed - Social Share remove button visible again
+* Fixed - Social Share button without attached network no longer open as popup by default. 
+* Fixed - Custom Media Queries disabled after saving
+* Description field can now be hidden via settings
+* Various layout optimizations
+* Tested for version 4.6
 
 = 5.7 = 
 

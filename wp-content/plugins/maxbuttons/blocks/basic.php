@@ -352,7 +352,7 @@ class basicBlock extends maxBlock
 			 		
 			 		$falign_right->output('','end'); 
 			 		
-			 		// Padding
+			 		// Padding - trouble
 			 		$ptop = new maxField('number'); 
 			 		$ptop->label = __('Padding', 'maxbuttons'); 
 			 		$ptop->id = 'padding_top';
@@ -363,7 +363,17 @@ class basicBlock extends maxBlock
 			 		$ptop->value = maxUtils::strip_px(maxBlocks::getValue('padding_top')); 
 			 		
 			 		$ptop->output('start'); 
+			 		 		
+			 		$pright = new maxField('number'); 
+			 		$pright->id = 'padding_right';
+			 		$pright->name = $pright->id; 
+ 					$pright->min = 0;
+			 		$pright->inputclass = 'tiny'; 
+			 		$pright->before_input = '<img src="' . $icon_url . 'p_right.png" class="icon padding" title="' . __("Padding Right","maxbuttons") . '" >'; 
+			 		$pright->value = maxUtils::strip_px(maxBlocks::getValue('padding_right')); 
 			 		
+			 		$pright->output();	 			 				 			 					 					 		
+
 			 		$pbottom = new maxField('number'); 
 			 		$pbottom->id = 'padding_bottom';
 			 		$pbottom->name = $pbottom->id; 
@@ -373,8 +383,8 @@ class basicBlock extends maxBlock
 			 		$pbottom->value = maxUtils::strip_px(maxBlocks::getValue('padding_bottom')); 
 			 		
 			 		$pbottom->output();
-			 		
-			 		$pleft = new maxField('number'); 
+	
+				 	$pleft = new maxField('number'); 
 			 		$pleft->id = 'padding_left';
 			 		$pleft->name = $pleft->id; 
  					$pleft->min = 0; 
@@ -382,18 +392,9 @@ class basicBlock extends maxBlock
 			 		$pleft->before_input = '<img src="' . $icon_url . 'p_left.png" class="icon padding" title="' . __("Padding Left","maxbuttons") . '" >'; 
 			 		$pleft->value = maxUtils::strip_px(maxBlocks::getValue('padding_left')); 
 			 		
-			 		$pleft->output();	 
+			 		$pleft->output('','end');	
 			 		
-			 		$pright = new maxField('number'); 
-			 		$pright->id = 'padding_right';
-			 		$pright->name = $pright->id; 
- 					$pright->min = 0;
-			 		$pright->inputclass = 'tiny'; 
-			 		$pright->before_input = '<img src="' . $icon_url . 'p_right.png" class="icon padding" title="' . __("Padding Right","maxbuttons") . '" >'; 
-			 		$pright->value = maxUtils::strip_px(maxBlocks::getValue('padding_right')); 
-			 		
-			 		$pright->output('','end');	 			 				 			 					 					 		
- 
+			 				 		 
  					// Text Color
  					$fcolor = new maxField('color'); 
  					$fcolor->id = 'text_color'; 
@@ -416,6 +417,7 @@ class basicBlock extends maxBlock
  					$field_width->name = 'button_width'; 
  					$field_width->id = $field_width->name; 
  					$field_width->inputclass = 'small'; 
+ 					$field_width->min = 0;
  					$field_width->value=  maxUtils::strip_px(maxBlocks::getValue('button_width'));  // strippx? 
  					$field_width->output('start');
  								
@@ -425,11 +427,17 @@ class basicBlock extends maxBlock
  					$field_height->name = 'button_height'; 
  					$field_height->id = $field_height->name; 
  					$field_height->inputclass = 'small'; 
+ 					$field_height->min = 0;
  					$field_height->value=  maxUtils::strip_px(maxBlocks::getValue('button_height'));  // strippx? 
  					$field_height->output('','end');
  					 
  					// Description
- 					$field_desc = new maxField('textarea'); 
+ 					$description_hide = get_option('maxbuttons_hidedescription'); 
+ 					if ($description_hide == 1) 
+ 						$field_desc = new maxField('hidden'); 
+					else
+ 	 					$field_desc = new maxField('textarea'); 
+					
 					$field_desc->label = __('Description', 'maxbuttons');
 					$field_desc->name = 'description'; 
 					$field_desc->id = $field_desc->name; 

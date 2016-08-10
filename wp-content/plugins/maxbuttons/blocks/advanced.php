@@ -103,7 +103,7 @@ class advancedBlock extends maxBlock
 				<div class="inside">					
 					<div class="option-design">
 						<p class="note"><?php _e('Adding !important to the button styles can help avoid potential conflicts with your theme styles.', 'maxbuttons') ?></p>
-						<div class="label"><?php _e('Use !important', 'maxbuttons') ?></div>
+						<label for='important_css'><?php _e('Use !important', 'maxbuttons') ?></label>
 						<div class="input checkbox"><input type="checkbox" value="1" id="important_css" name="important_css" <?php checked($important_css,1) ?>></div>
 
 					</div>
@@ -112,14 +112,14 @@ class advancedBlock extends maxBlock
 
 					<div class="option-design">
 						<p class="note"><?php _e("Useful for custom code or other plugins who target classes", "maxbuttons"); ?></p>
-						<div class="label"><?php _e("Extra classes","maxbuttons") ?></div>
+						<label for='extra_classes'><?php _e("Extra classes","maxbuttons") ?></label>
 						<div class="input"><input type="text" id="extra_classes" name="extra_classes" class="medium" value="<?php echo $extra_classes ?>" /></div> 
 
 					</div>
 										
 					<div class="option-design">
 						<p class="note"><?php _e("Useful when button is targeting lightbox and/or popup plugins that use this method", "maxbuttons"); ?></p>
-						<div class="label"><?php _e("Custom Rel Tag","maxbuttons") ?></div>
+						<label for='custom_rel'><?php _e("Custom Rel Tag","maxbuttons") ?></label>
 						<div class="input"><input type="text" id="custom_rel" name="custom_rel" class="medium" value="<?php echo $custom_rel ?>" /></div> 
 						<div class="clear"></div>
 					</div>
@@ -129,7 +129,7 @@ class advancedBlock extends maxBlock
 						<p class="note"><?php _e('By default, the CSS styles for the button are rendered within a &lt;style&gt; block in the HTML body. Enabling the "Use External CSS" option allows you to put the CSS code for the button into your theme stylesheet instead.', 'maxbuttons') ?>
 						
 						</p>
-						<div class="label"><?php _e('Use External CSS', 'maxbuttons') ?></div>
+						<label for='external_css'><?php _e('Use External CSS', 'maxbuttons') ?></label>
 						<div class="input checkbox"><input type="checkbox" id="external_css" name="external_css" value="1" <?php checked($external_css,1) ?>> <?php _e("Warning: This will remove all styling of the buttons!","maxbuttons"); ?> </div>
 						<div class="clear"></div>
 					</div>

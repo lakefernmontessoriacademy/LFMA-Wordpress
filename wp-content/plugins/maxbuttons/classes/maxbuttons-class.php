@@ -181,7 +181,7 @@ class maxButtonsPlugin
  		register_setting( 'maxbuttons_settings', 'maxbuttons_user_level' );
  		register_setting( 'maxbuttons_settings', 'maxbuttons_noshowtinymce' );
  		register_setting( 'maxbuttons_settings', 'maxbuttons_minify' ); 
- 		
+ 		register_setting( 'maxbuttons_settings', 'maxbuttons_hidedescription' ); 
 	}
 	
 	protected function checkbox_option($options) 
@@ -304,8 +304,6 @@ class maxButtonsPlugin
 		// only hook in maxbuttons realm. 
 		if ( strpos($hook,'maxbuttons') === false && $hook != 'post.php' && $hook != 'post-new.php' )
 		{
-			//print_R($_GET); 
-			//exit();
 			if (! isset($_GET['fl_builder'])) // exception for beaver builder
 			return;
  		}

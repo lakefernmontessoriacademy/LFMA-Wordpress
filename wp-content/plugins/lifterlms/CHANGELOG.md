@@ -1,5 +1,19 @@
 == Changelog ==
 
+= v2.7.11 - 2016/07/22 =
+------------------------
+
++ Removed a duplicate action hook on course archive loop.
++ Switched registration template include to use a more sane function
++ Added updated banner adds with prettier ones. Wooooooo.
+
+
+= v2.7.10 - 2016/07/19 =
+------------------------
+
++ Fix undefined noticed related to LifterLMS custom post type archive filtering
++ Fix filter which was supposed to allow custom engagment types to be queried & triggered by engagements automatically but was passing data incorrectly
+
 = v2.7.9 - 2016/07/11 =
 -----------------------
 
